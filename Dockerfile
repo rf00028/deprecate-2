@@ -1,9 +1,5 @@
-FROM openjdk:11.0.15-jdk-buster
-
-ARG JAR_FILE
-ADD $JAR_FILE target/app.jar
-ENV JAVA_OPTS=""
-
-EXPOSE 8082
-
-ENTRYPOINT ["java", "-jar","target/app.jar"]
+FROM openjdk:17-jdk-slim
+EXPOSE 8080
+ARG JAR=spring-petclinic-2.1.0.BUILD-SNAPSHOT.jar
+COPY target/$JAR /app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
