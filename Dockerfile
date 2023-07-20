@@ -1,3 +1,9 @@
-FROM maven:3.8.4-openjdk-11-slim
-COPY target/spring-petclinic-2.7.0-SNAPSHOT.jar /petclinic.jar
-ENTRYPOINT ["java", "-jar", "/petclinic.jar"]
+FROM openjdk:11.0.15-jdk-buster
+
+ARG JAR_FILE
+ADD $JAR_FILE target/app.jar
+ENV JAVA_OPTS=""
+
+EXPOSE 8082
+
+ENTRYPOINT ["java", "-jar","target/app.jar"]
